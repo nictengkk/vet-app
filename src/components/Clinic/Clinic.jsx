@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Clinic({ name, type }) {
   // const styles = { width: "18rem" };
@@ -16,9 +16,12 @@ function Clinic({ name, type }) {
       </div>
 
       <div className="card-footer text-muted">
-        <button className="btn btn-outline-primary btn-sm mx-1">
+        <Link
+          className="btn btn-outline-primary btn-sm mx-1"
+          to={`/clinics/${10}`}
+        >
           More Info
-        </button>
+        </Link>
       </div>
     </div>
   );

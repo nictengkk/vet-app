@@ -2,7 +2,9 @@ import React from "react";
 import "jest-dom/extend-expect";
 import "react-testing-library/cleanup-after-each";
 import { render } from "react-testing-library";
-import ClinicList, { fetchClinics as mockFetchClinics } from "./ClinicList";
+import ClinicListPage, {
+  fetchClinics as mockFetchClinics
+} from "./ClinicListPage";
 
 describe("ClinicList", () => {
   const sampleName =
@@ -41,7 +43,7 @@ describe("ClinicList", () => {
   });
 
   test("display a list of 2 clinics when loaded", async () => {
-    const { getByText } = render(<ClinicList {...sampleResult} />);
+    const { getByText } = render(<ClinicListPage {...sampleResult} />);
 
     expect(mockFetchClinics).toHaveBeenCalledTimes(1);
   });

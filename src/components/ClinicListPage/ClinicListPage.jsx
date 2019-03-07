@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Clinic from "../Clinic/Clinic";
 import MapContainer from "../MapContainer/MapContainer";
 
-class ClinicList extends Component {
+class ClinicListPage extends Component {
   state = {
     clinicList: [],
     userAddress: ""
@@ -61,4 +61,4 @@ class ClinicList extends Component {
   }
 }
 
-export default ClinicList;
+export default ClinicListPage;
