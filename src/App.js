@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-// import SimpleMap from "./components/SimpleMap/SimpleMap";
-import ClinicList from "./components/ClinicList/ClinicList";
-// import ClinicInfoPage from "../src/components/ClinicInfoPage/ClinicInfoPage";
-// import Clinic from "./components/Clinic/Clinic";
+import ClinicListPage from "./components/ClinicListPage/ClinicListPage";
+import ClinicInfoPage from "../src/components/ClinicInfoPage/ClinicInfoPage";
 import LandingPage from "./components/LandingPage/LandingPage";
 import "./App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -14,13 +12,12 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="container">
+        <div>
           <Switch>
             <Route path="/home" component={LandingPage} />
-            <Route path="/clinics" component={ClinicList} />
-            {/* <Route path="/clinics/:id" component={ClinicInfoPage} /> */}
+            <Route path="/clinics/:id" component={ClinicInfoPage} />
+            <Route path="/clinics" component={ClinicListPage} />
             <Redirect from="/" to="/home" />
-            <ClinicList />
           </Switch>
         </div>
       </BrowserRouter>
