@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 // import SimpleMap from "./components/SimpleMap/SimpleMap";
 import ClinicList from "./components/ClinicList/ClinicList";
-// import ClinicDrawer from "../src/components/ClinicDrawer/ClinicDrawer";
 // import ClinicInfoPage from "../src/components/ClinicInfoPage/ClinicInfoPage";
 // import Clinic from "./components/Clinic/Clinic";
 import LandingPage from "./components/LandingPage/LandingPage";
@@ -13,9 +13,17 @@ import "antd/dist/antd.css";
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        <LandingPage />
-      </div>
+      <BrowserRouter>
+        <div className="container">
+          <Switch>
+            <Route path="/home" component={LandingPage} />
+            <Route path="/clinics" component={ClinicList} />
+            {/* <Route path="/clinics/:id" component={ClinicInfoPage} /> */}
+            <Redirect from="/" to="/home" />
+            <ClinicList />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
