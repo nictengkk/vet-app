@@ -1,6 +1,6 @@
 {
   "help": "https://data.gov.sg/api/3/action/help_show?name=datastore_search",
-  "success": true,
+  "success": "true",
   "result": {
     "resource_id": "b2871270-4eef-44a3-be98-908e2a73b19f",
     "fields": [
@@ -46,7 +46,9 @@
         "_id": 1,
         "type": "Hospital",
         "tel_office_2": "na",
-        "tel_office_1": "68791000"
+        "tel_office_1": "68791000",
+        "longitude": 103.7636,
+        "latitude": 1.422209
       },
       {
         "name": "AAVC - Animal & Avian Veterinary Clinic",
@@ -56,7 +58,9 @@
         "_id": 2,
         "type": "Clinic",
         "tel_office_2": "na",
-        "tel_office_1": "68539397"
+        "tel_office_1": "68539397",
+        "longitude": 103.82745,
+        "latitude": 1.426131
       },
       {
         "name": "Acacia Veterinary Clinic",
@@ -66,7 +70,9 @@
         "_id": 3,
         "type": "Clinic",
         "tel_office_2": "na",
-        "tel_office_1": "64816889"
+        "tel_office_1": "64816889",
+        "longitude": 103.8487619,
+        "latitude": 1.363639
       },
       {
         "name": "Allpets & Aqualife Vets Pte Ltd ",
@@ -86,7 +92,9 @@
         "_id": 5,
         "type": "Clinic",
         "tel_office_2": "na",
-        "tel_office_1": "62455543"
+        "tel_office_1": "62455543",
+        "longitude": 103.922759,
+        "latitude": 1.312738
       },
       {
         "name": "AMK Veterinary Surgery (2009) Pte Ltd",

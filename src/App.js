@@ -15,6 +15,10 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/home" component={LandingPage} />
+            <Route
+              path="/clinics/:long/:lat"
+              render={props => <ClinicListPage {...props} />}
+            />
             <Route path="/clinics/:id" component={ClinicInfoPage} />
             <Route path="/clinics" component={ClinicListPage} />
             <Redirect from="/" to="/home" />
