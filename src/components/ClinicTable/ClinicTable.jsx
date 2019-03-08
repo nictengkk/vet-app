@@ -11,32 +11,40 @@ function ClinicTable({ clinicList }) {
 
   const styles = {
     height: window.innerHeight,
-    width: 550
+    width: 550,
+    overflow: "scroll"
+  };
+
+  const tableBodyStyles = {
+    overflow: "scroll",
+    height: 650
   };
 
   return (
-    <table className="table" style={styles}>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Address</th>
-          <th>Type</th>
-          <th>Postal Code</th>
-          <th>Contact Number</th>
-        </tr>
-      </thead>
-      <tbody>
-        {clinicList.map(clinic => (
-          <tr key={clinic._id} data-testid="clinic-table-row">
-            <td>{clinic.name}</td>
-            <td>{clinic.address}</td>
-            <td>{clinic.type}</td>
-            <td>{clinic.postal_code}</td>
-            <td>{clinic.tel_office_1}</td>
+    <div style={tableBodyStyles}>
+      <table className="table" style={styles}>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Type</th>
+            <th>Postal Code</th>
+            <th>Contact Number</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {clinicList.map(clinic => (
+            <tr key={clinic._id} data-testid="clinic-table-row">
+              <td>{clinic.name}</td>
+              <td>{clinic.address}</td>
+              <td>{clinic.type}</td>
+              <td>{clinic.postal_code}</td>
+              <td>{clinic.tel_office_1}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

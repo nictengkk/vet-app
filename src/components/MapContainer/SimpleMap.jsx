@@ -27,8 +27,25 @@ export default class App extends Component {
         bearing: 0,
         pitch: 0
       },
-      popupInfo: null
+      popupInfo: null,
+      clinics: []
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.userAddress.longitude === prevProps.userAddress.longitude &&
+      this.props.userAddress.latitude === prevProps.userAddress.latitude
+    ) {
+      return;
+    }
+    const { userAddress } = this.props;
+    const viewport = { ...this.state.viewport };
+    viewport.longitude = userAddress.longitude;
+    viewport.latitude = userAddress.latitude;
+    viewport.zoom = 13;
+    console.log("component updating", viewport);
+    this.setState({ viewport: viewport });
   }
 
   _updateViewport = viewport => {
@@ -74,6 +91,8 @@ export default class App extends Component {
 
   render() {
     const { viewport } = this.state;
+
+    // const { clinics } = this.props;
     const clinics = Clinics["result"]["records"];
     return (
       <MapGL
