@@ -74,15 +74,13 @@ class LandingPage extends Component {
   //     console.log(err);
   //   }
 
+  //work on handleClick to ensure user input gets converted to Long Lat
   handleClick = async () => {
-    const coordinates = await getCoordinate(this.state.userAddress);
-    console.log("user address: ", coordinates);
-    // const data = coordinates.json();
-    // const result = data.Response.View[0].Result[0].Location;
-    // const long = result.DisplayPosition.Longtitude;
-    // const lat = result.DisplayPosition.Latitude;
-    const lat = 5;
-    const long = 10;
+    const response = await getCoordinate(this.state.userAddress);
+    console.log("user address: ", response);
+    const lat = response.coordinates.Latitude;
+    // console.log("user long: ", lat);
+    const long = response.coordinates.Longitude;
     this.props.history.push(`/clinics/${long}/${lat}`);
   };
 
@@ -115,7 +113,7 @@ class LandingPage extends Component {
         />
         <button
           className="btn btn-outline-success mt-2"
-          onClick={this.handleSubmit}
+          onClick={this.handleClick}
         >
           Find Your Nearest Vet
         </button>
