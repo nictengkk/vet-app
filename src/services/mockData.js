@@ -5,6 +5,22 @@ let distanceMatrix = [
   { id: 4, distance: 612 }
 ];
 
+let coordinate = [
+  {
+    address: {
+      City: "Singapore",
+      Country: "SGP",
+      Label: "738078, Singapore",
+      PostalCode: "738078",
+      State: "Singapore"
+    },
+    coordinates: {
+      Latitude: 1.42158,
+      Longitude: 103.75798
+    }
+  }
+];
+
 let clinicList = [
   {
     address: "1 Turf Club Avenue Singapore Racecourse",
@@ -14,7 +30,9 @@ let clinicList = [
     tel_office_1: "68791000",
     tel_office_2: "na",
     type: "Hospital",
-    _id: 1
+    _id: 1,
+    longitude: 103.7636,
+    latitude: 1.422209
   },
   {
     address: "716 Yishun Street 71 #01-254",
@@ -24,7 +42,9 @@ let clinicList = [
     tel_office_1: "68539397",
     tel_office_2: "na",
     type: "Clinic",
-    _id: 2
+    _id: 2,
+    longitude: 103.82745,
+    latitude: 1.426131
   },
   {
     address: "338 Ang Mo Kio Avenue 1 #01-1671",
@@ -34,7 +54,9 @@ let clinicList = [
     tel_office_1: "64816889",
     tel_office_2: "na",
     type: "Clinic",
-    _id: 3
+    _id: 3,
+    longitude: 103.8487619,
+    latitude: 1.363639
   },
   {
     address: "50 Burnfoot Terrace, Frankel Estate",
@@ -44,7 +66,9 @@ let clinicList = [
     tel_office_1: "62455543",
     tel_office_2: "na",
     type: "Clinic",
-    _id: 4
+    _id: 4,
+    longitude: 103.922759,
+    latitude: 1.312738
   }
 ];
 
@@ -69,4 +93,8 @@ const sortedListByDist = arr => {
   });
 };
 
-console.log(sortedListByDist(newClinicList));
+// console.log(sortedListByDist(newClinicList));
+
+export function getClinics() {
+  return clinicList;
+}
