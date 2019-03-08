@@ -14,7 +14,7 @@ export const getCoordinates = async list => {
       try {
         const response = await fetch(
           `https://geocoder.api.here.com/6.2/geocode.json?app_id=kx4YbvbQsa7oF2WwH9su&app_code=HdQS63p-e0B3Q30KOCjFdw&searchtext=${
-            clinic.postalCode
+            clinic.postal_code
           }`
         );
         const data = await response.json();
@@ -41,15 +41,18 @@ export const getCoordinate = async searchTerm => {
   }
 };
 
-// export const getCoordinate = async searchTerm => {
-//   const response = await fetch(
-//     `https://geocoder.api.here.com/6.2/geocode.json?app_id=kx4YbvbQsa7oF2WwH9su&app_code=HdQS63p-e0B3Q30KOCjFdw&searchtext=${
-//     searchTerm
-//     }`
-//   );
-//   const data = await response.json();
-//   const results = transform(data);
-//   return results;
-// } catch (err) {
-//   console.log(err);
-// }
+export const getClinics = async () => {
+  try {
+    const response = await fetch(
+      "https://data.gov.sg/api/action/datastore_search?resource_id=b2871270-4eef-44a3-be98-908e2a73b19f"
+    );
+    const data = await response.json();
+    const clinics = data.result.records;
+    const coordinates = await getCoordinates(clinics);
+    return coordinates;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//combine clinics object (line 50) with coordinates (line51) data match it with post code like in mockData to form a combined object with latitude.
