@@ -1,16 +1,35 @@
 import React, { Component } from "react";
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
+import {
+  Map,
+  GoogleApiWrapper,
+  GoogleApiComponent,
+  Marker,
+  InfoWindow
+} from "google-maps-react";
+import ReactDOM from "react-dom";
+
+//import Map from "google-maps-react"
 
 export class MapContainer extends Component {
-  state = { selectedPlace: { name: "" } };
+  state = {
+    userAddress: "",
+    selectedPlace: { name: "" }
+  };
+
+  componentDidMount() {}
 
   render() {
+    const style = {
+      width: "100vw",
+      height: "100vh"
+    };
+
     const { google } = this.props;
     console.log(google.map);
-    const origin1 = new google.maps.LatLng(55.930385, -3.118425);
-    const origin2 = "Greenwich, England";
-    const destinationA = "Stockholm, Sweden";
-    const destinationB = new google.maps.LatLng(50.087692, 14.42115);
+    const origin1 = new google.maps.LatLng(1.426131, 103.82745);
+    const origin2 = "760716 Singapore";
+    const destinationA = "312079 Singapore";
+    const destinationB = new google.maps.LatLng(1.334342, 103.848249);
     const distanceMatrixRequest = {
       origins: [origin1, origin2],
       destinations: [destinationA, destinationB],
@@ -38,15 +57,26 @@ export class MapContainer extends Component {
     service.getDistanceMatrix(distanceMatrixRequest, callback);
 
     return (
-      <Map google={google} zoom={14}>
-        <Marker onClick={this.onMarkerClick} name={"Current location"} />
+      <div style={style}>
+        <Map
+          google={google}
+          initialCenter={{ lat: 1.426131, lng: 103.82745 }}
+          zoom={14}
+        >
+          <Marker onClick={this.onMarkerClick} name={"Current location"} />
 
-        <InfoWindow onClose={this.onInfoWindowClose}>
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-          </div>
-        </InfoWindow>
-      </Map>
+          <Marker
+            name={"Vet Clinic"}
+            position={{ lat: 1.426131, lng: -103.82745 }}
+          />
+
+          <InfoWindow onClose={this.onInfoWindowClose}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+          </InfoWindow>
+        </Map>
+      </div>
     );
   }
 }
@@ -54,3 +84,24 @@ export class MapContainer extends Component {
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 })(MapContainer);
+
+// export class MapContainer extends Component {
+//   // state = { selectedPlace: { name: "" } };
+
+//   render() {
+//     const style = {
+//       width: "100vw",
+//       height: "100vh"
+//     };
+
+//     return (
+//       <div style={style}>
+//         <Map google={this.props.google} />
+//       </div>
+//     );
+//   }
+// }
+
+// export default GoogleApiComponent({
+//   apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+// })(MapContainer);
