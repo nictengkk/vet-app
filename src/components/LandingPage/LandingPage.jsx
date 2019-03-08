@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import {
-  getCoordinate,
-  getCoordinates,
-  transformData
-} from "../../services/getCoordinates";
+import { getCoordinate, getCoordinates } from "../../services/getCoordinates";
 
 class LandingPage extends Component {
   state = {
@@ -25,21 +20,21 @@ class LandingPage extends Component {
 
       const data = await response.json();
       const clinics = data.result.records;
-      const newClinicList = clinics.map(clinic => {
-        let address = clinic.address;
-        let postalCode = clinic.postal_code;
-        let name = clinic.name;
-        let id = clinic._id;
-        const joinedAddress = address.split(" ").join("+");
-        return {
-          id: id,
-          name: name,
-          address: joinedAddress,
-          postalCode: postalCode
-        };
-      });
+      // const newClinicList = clinics.map(clinic => {
+      // let address = clinic.address;
+      // let postalCode = clinic.postal_code;
+      // let name = clinic.name;
+      // let id = clinic._id;
+      // const joinedAddress = address.split(" ").join("+");
+      // return {
+      //   id: id,
+      //   name: name,
+      //   address: joinedAddress,
+      //   postalCode: postalCode
+      // };
+      // });
       //get longtitude & latitude
-      const coordinates = await getCoordinates(newClinicList);
+      const coordinates = await getCoordinates(clinics);
       console.log("clinics", coordinates);
       this.setState({ clinicList: coordinates });
       //now join the object
@@ -81,7 +76,8 @@ class LandingPage extends Component {
     const lat = response.coordinates.Latitude;
     // console.log("user long: ", lat);
     const long = response.coordinates.Longitude;
-    this.props.history.push(`/clinics/${long}/${lat}`);
+    this.props.handleUserCoordinates(lat, long); //this method passed down from the parent takes in the arguments from the child and processes it back in the parent.
+    this.props.history.push("/clinics");
   };
 
   handleUserAddress = event => {
