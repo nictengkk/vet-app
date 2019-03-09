@@ -36,7 +36,7 @@ function ClinicTable({ clinicList }) {
           {clinicList.map(clinic => (
             <tr key={clinic._id} data-testid="clinic-table-row">
               <td>{clinic.name}</td>
-              <td>{clinic.address}</td>
+              <td>{clinic.address.Label}</td>
               <td>{clinic.type}</td>
               <td>{clinic.postal_code}</td>
               <td>{clinic.tel_office_1}</td>

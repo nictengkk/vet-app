@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import MapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
-// import ControlPanel from "./ControlPanel";
 import ClinicPin from "./ClinicPin";
 import ClinicInfo from "./Clinicinfo";
-import Clinics from "../../services/db.json";
+// import Clinics from "../../services/db.json";
+// import DeckGL, { ArcLayer } from "deck.gl";
 
 const TOKEN =
   "pk.eyJ1IjoibmljdGVuZ2trIiwiYSI6ImNqc3ZzbGd2bjBhZGkzeXFqcTBweXp6bTAifQ.kgYrCJV7DQ_wyYcZ4PA4FA";
@@ -27,8 +27,7 @@ export default class App extends Component {
         bearing: 0,
         pitch: 0
       },
-      popupInfo: null,
-      clinics: []
+      popupInfo: null
     };
   }
 
@@ -53,13 +52,14 @@ export default class App extends Component {
   };
 
   _renderCityMarker = (clinic, index) => {
+    console.log("in renderCityMarker: ", clinic.coordinates);
     return (
-      clinic.longitude &&
-      clinic.latitude && (
+      clinic.coordinates.Longitude &&
+      clinic.coordinates.Latitude && (
         <Marker
           key={`marker-${index}`}
-          longitude={clinic.longitude}
-          latitude={clinic.latitude}
+          longitude={clinic.coordinates.Longitude}
+          latitude={clinic.coordinates.Latitude}
         >
           <ClinicPin
             size={20}
@@ -72,14 +72,15 @@ export default class App extends Component {
 
   _renderPopup() {
     const { popupInfo } = this.state;
+    console.log("popupInfo: ", popupInfo);
 
     return (
       popupInfo && (
         <Popup
           tipSize={5}
           anchor="top"
-          longitude={popupInfo.longitude}
-          latitude={popupInfo.latitude}
+          longitude={popupInfo.coordinates.Longitude}
+          latitude={popupInfo.coordinates.Latitude}
           closeOnClick={false}
           onClose={() => this.setState({ popupInfo: null })}
         >
@@ -91,9 +92,8 @@ export default class App extends Component {
 
   render() {
     const { viewport } = this.state;
-
-    // const { clinics } = this.props;
-    const clinics = Clinics["result"]["records"];
+    const { clinics } = this.props;
+    console.log("clinic list to be marked: ", clinics[0]);
     return (
       <MapGL
         {...viewport}
@@ -103,10 +103,8 @@ export default class App extends Component {
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN}
       >
-        {clinics.map(this._renderCityMarker)}
-
+        {clinics.length >= 1 ? clinics.map(this._renderCityMarker) : null}
         {this._renderPopup}
-
         <div className="nav" style={navStyle}>
           <NavigationControl onViewportChange={this._updateViewport} />
         </div>

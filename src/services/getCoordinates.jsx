@@ -49,7 +49,17 @@ export const getClinics = async () => {
     const data = await response.json();
     const clinics = data.result.records;
     const coordinates = await getCoordinates(clinics);
-    return coordinates;
+    const copyClinicList = [...clinics];
+    const combinedClinicList = copyClinicList.map(clinic => {
+      const matchPostCode = clinic.postal_code;
+      const foundCoordinates = coordinates.filter(
+        e => e.address.PostalCode === matchPostCode
+      );
+      const combinedList = Object.assign({ ...clinic }, ...foundCoordinates);
+      return combinedList;
+    });
+    console.log(combinedClinicList);
+    return combinedClinicList;
   } catch (err) {
     console.log(err);
   }

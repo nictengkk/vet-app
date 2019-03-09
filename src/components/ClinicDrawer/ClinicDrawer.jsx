@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Drawer } from "antd";
+import Clinic from "../Clinic/Clinic";
 // import Clinic from "../Clinic/Clinic";
 
 class ClinicDrawer extends Component {
@@ -18,6 +19,8 @@ class ClinicDrawer extends Component {
   };
 
   render() {
+    const { data } = this.props;
+    const clinicList = data;
     return (
       <div>
         <Button type="primary" onClick={this.showDrawer}>
@@ -30,10 +33,11 @@ class ClinicDrawer extends Component {
           onClose={this.onClose}
           visible={this.state.visible}
         >
-          {/* {clinics.map(clinic => {
-            <Clinic />;
-          })} */}
-          <p>Clinic A</p>
+          {clinicList.map(clinic => (
+            <div className="card-col">
+              <Clinic key={clinic._id} name={clinic.name} type={clinic.type} />
+            </div>
+          ))}
         </Drawer>
       </div>
     );

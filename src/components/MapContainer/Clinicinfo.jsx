@@ -2,8 +2,8 @@ import React, { PureComponent } from "react";
 
 export default class ClinicInfo extends PureComponent {
   render() {
-    const { info } = this.props;
-    const { name, type, address } = this.props;
+    // const { info } = this.props;
+    const { name } = this.props;
     return (
       <div>
         <div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import NavBar from "./components/NavBar/NavBar";
 import { getCoordinate, getCoordinates } from "../../services/getCoordinates";
 
 class LandingPage extends Component {
@@ -10,8 +11,6 @@ class LandingPage extends Component {
     }
   };
 
-  //maybe clinic data dont have to be called here. Call it in ClinicListPage and run a map on MapContainer to set a marker based on the long and lat
-
   async componentDidMount() {
     try {
       const response = await fetch(
@@ -20,56 +19,34 @@ class LandingPage extends Component {
 
       const data = await response.json();
       const clinics = data.result.records;
-      // const newClinicList = clinics.map(clinic => {
-      // let address = clinic.address;
-      // let postalCode = clinic.postal_code;
-      // let name = clinic.name;
-      // let id = clinic._id;
-      // const joinedAddress = address.split(" ").join("+");
-      // return {
-      //   id: id,
-      //   name: name,
-      //   address: joinedAddress,
-      //   postalCode: postalCode
-      // };
-      // });
-      //get longtitude & latitude
+      console.log("data.gov.data: ", clinics);
       const coordinates = await getCoordinates(clinics);
-      console.log("clinics", coordinates);
-      this.setState({ clinicList: coordinates });
+      const copyClinicList = [...clinics];
+      const combinedClinicList = copyClinicList.map(clinic => {
+        const matchPostCode = clinic.postal_code;
+        const foundCoordinates = coordinates.filter(
+          e => e.address.PostalCode === matchPostCode
+        );
+        const combinedList = Object.assign({ ...clinic }, ...foundCoordinates);
+        return combinedList;
+      });
+      console.log("clinics", combinedClinicList);
+      this.setState({ clinicList: combinedClinicList });
       //now join the object
     } catch (error) {
       console.log(error);
     }
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   this.props.getCombinedClinicList(this.state.clinicList);
+  // }
+
   // async componentDidUpdate(prevProps, prevState) {
   // this.setState({ clinicListWithCoordinates: data.results });
   // const testClinicList = newClinicList.slice(0, 5);
   // }
 
-  //   try {
-  //     const response = await fetch(
-  //       `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${
-  //         this.state.userAddress
-  //       }&destinations=${testClinicList[0].postalCode}&key=${
-  //         process.env.DM_REACT_APP_GOOGLE_MAP_API_KEY
-  //       }`
-  //       // {
-  //       //   mode: "no-cors"
-  //       // }
-  //     );
-  //     const data = await response.json();
-  //     const Access = data.rows[0].elements[0];
-  //     const distance = Access.distance.value;
-  //     const duration = Access.duration.value;
-  //     console.log(distance);
-  //     console.log(duration);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-
-  //work on handleClick to ensure user input gets converted to Long Lat
   handleClick = async () => {
     const response = await getCoordinate(this.state.userAddress);
     console.log("user address: ", response);
@@ -77,6 +54,7 @@ class LandingPage extends Component {
     // console.log("user long: ", lat);
     const long = response.coordinates.Longitude;
     this.props.handleUserCoordinates(lat, long); //this method passed down from the parent takes in the arguments from the child and processes it back in the parent.
+    this.props.handleCombinedClinicList(this.state.clinicList);
     this.props.history.push("/clinics");
   };
 

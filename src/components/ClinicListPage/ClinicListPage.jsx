@@ -3,7 +3,7 @@ import SimpleMap from "../MapContainer/SimpleMap";
 import ClinicTable from "../ClinicTable/ClinicTable";
 import SortBySelect from "../SortBySelect/SortBySelect";
 // import { getClinics } from "../../services/getCoordinates";
-import Clinics from "../../services/db.json";
+// import Clinics from "../../services/db.json";
 
 class ClinicListPage extends Component {
   state = {
@@ -19,67 +19,15 @@ class ClinicListPage extends Component {
     selectedSortBy: "name"
   };
 
-  // setCurrentLocation = () => {
-  //   const options = {
-  //     enableHighAccuracy: true,
-  //     timeout: 5000,
-  //     maximumAge: 0
-  //   };
-
-  //   const success = pos => {
-  //     const crd = pos.coords;
-  //     const viewport = {
-  //       ...this.state.viewport,
-  //       longitude: crd.longitude,
-  //       latitude: crd.latitude
-  //     };
-  //     this.setState({ viewport: viewport });
-  //   };
-
-  //   //   console.log("Your current position is:");
-  //   //   console.log(`Latitude : ${crd.latitude}`);
-  //   //   console.log(`Longitude: ${crd.longitude}`);
-  //   //   console.log(`More or less ${crd.accuracy} meters.`);
-  //   // };
-
-  //   const error = err => {
-  //     console.warn(`ERROR(${err.code}): ${err.message}`);
-  //   };
-
-  //   const position = navigator.geolocation.getCurrentPosition(loc => {
-  //     console.log("results: ", loc.coords.latitude, loc.coords.longitude);
-  //   });
-  //   // success,
-  //   // error,
-  //   // options
-
-  //   console.log("current position: ", position);
-  //   console.log(navigator);
-  // };
-
-  async componentDidMount() {
+  componentDidMount() {
+    // console.log("clinic list passed down from App: ", clinicList);
     const { mapInitialCenter } = this.props;
-    const clinics = Clinics["result"]["records"];
+    const { combinedClinicList } = this.props;
     const currentLocation = mapInitialCenter;
+    const clinicList = combinedClinicList;
 
-    this.setState({ clinicList: clinics, userAddress: currentLocation });
+    this.setState({ clinicList: clinicList, userAddress: currentLocation });
   }
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (
-  //     this.props.userAddress.longitude === prevProps.userAddress.longitude &&
-  //     this.props.userAddress.latitude === prevProps.userAddress.latitude
-  //   ) {
-  //     return;
-  //   }
-  //   const { userAddress } = this.props;
-  //   console.log(userAddress);
-  // const viewport = { ...this.state.viewport };
-  // viewport.longitude = userAddress.longitude;
-  // viewport.latitude = userAddress.latitude;
-  //   viewport.zoom = 16;
-  //   console.log("component updating", viewport);
-  //   this.setState({ viewport: viewport });
-  // }
 
   handleSortSelect = event => {
     const selectedOption = event.target.value;
@@ -87,7 +35,9 @@ class ClinicListPage extends Component {
   };
 
   sortClincs = () => {
-    const { clinicList, selectedSortBy } = this.state;
+    const { selectedSortBy } = this.state;
+    const { combinedClinicList } = this.props;
+    const clinicList = combinedClinicList;
 
     return clinicList.sort((first, second) => {
       if (first[selectedSortBy] < second[selectedSortBy]) return -1;
@@ -103,8 +53,6 @@ class ClinicListPage extends Component {
       selectedSortBy,
       userAddress
     } = this.state;
-
-    console.log(this.state.userAddress);
 
     const sortedClinicList = this.sortClincs();
 
@@ -132,5 +80,3 @@ class ClinicListPage extends Component {
 }
 
 export default ClinicListPage;
-
-//pass user lat and long to Map via props

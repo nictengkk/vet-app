@@ -3,9 +3,11 @@ import ClinicDrawer from "../ClinicDrawer/ClinicDrawer";
 
 export class ClinicInfoPage extends Component {
   render() {
+    const { combinedClinicList } = this.props;
+
     return (
       <div>
-        <ClinicDrawer />
+        <ClinicDrawer data={combinedClinicList} />
       </div>
     );
   }

@@ -1,9 +1,11 @@
-let distanceMatrix = [
-  { id: 1, distance: 1670 },
-  { id: 2, distance: 3543 },
-  { id: 3, distance: 6381 },
-  { id: 4, distance: 612 }
-];
+import { getClinics } from "./getCoordinates";
+
+// let distanceMatrix = [
+//   { id: 1, distance: 1670 },
+//   { id: 2, distance: 3543 },
+//   { id: 3, distance: 6381 },
+//   { id: 4, distance: 612 }
+// ];
 
 let coordinate = [
   {
