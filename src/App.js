@@ -20,22 +20,16 @@ class App extends Component {
   };
 
   getUserCoordinatesFromInput = (latitude, longitude) => {
-    console.log("Im here", latitude, longitude);
     this.setState({
       userCoordinatesForMapInitalisation: { latitude, longitude }
     });
   };
 
   getCombinedClinicList = clinicList => {
-    console.log("hello", clinicList);
     this.setState({ clinicList });
   };
 
   render() {
-    console.log(
-      "user coordinates ",
-      this.state.userCoordinatesForMapInitalisation
-    );
     return (
       <BrowserRouter>
         <div>
@@ -48,18 +42,6 @@ class App extends Component {
                   handleCombinedClinicList={this.getCombinedClinicList}
                   handleUserCoordinates={this.getUserCoordinatesFromInput}
                   {...props}
-                />
-              )}
-            />
-            <Route
-              path="/clinics/:id"
-              render={props => (
-                <ClinicListPage
-                  {...props}
-                  combinedClinicList={this.state.clinicList}
-                  mapInitialCenter={
-                    this.state.userCoordinatesForMapInitalisation
-                  }
                 />
               )}
             />
