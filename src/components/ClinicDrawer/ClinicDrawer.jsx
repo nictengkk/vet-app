@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Drawer } from "antd";
 import Clinic from "../Clinic/Clinic";
-// import Clinic from "../Clinic/Clinic";
+// import Clinics from "../../services/db.json";
 
 class ClinicDrawer extends Component {
   state = { visible: false, placement: "left" };
@@ -19,8 +19,12 @@ class ClinicDrawer extends Component {
   };
 
   render() {
+    //database of clinics stored locally
+    // const clinics = Clinics["result"]["records"];
+    //database of combined clinic list with long and latitudes
     const { data } = this.props;
     const clinicList = data;
+    console.log(data);
     return (
       <div>
         <Button type="primary" onClick={this.showDrawer}>

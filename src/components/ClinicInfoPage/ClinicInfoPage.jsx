@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ClinicDrawer from "../ClinicDrawer/ClinicDrawer";
+// import SimpleMap from "../MapContainer/SimpleMap";
 
 export class ClinicInfoPage extends Component {
   render() {

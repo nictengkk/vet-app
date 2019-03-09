@@ -34,7 +34,7 @@ export default class App extends Component {
     const viewport = { ...this.state.viewport };
     viewport.longitude = userAddress.longitude;
     viewport.latitude = userAddress.latitude;
-    viewport.zoom = 13;
+    viewport.zoom = 14;
     this.setState({ viewport });
   }
 
