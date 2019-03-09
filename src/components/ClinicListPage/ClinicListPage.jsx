@@ -2,32 +2,19 @@ import React, { Component } from "react";
 import SimpleMap from "../MapContainer/SimpleMap";
 import ClinicTable from "../ClinicTable/ClinicTable";
 import SortBySelect from "../SortBySelect/SortBySelect";
+// import "geolib";
 // import { getClinics } from "../../services/getCoordinates";
 // import Clinics from "../../services/db.json";
 
+const SORT_BY_OPTIONS = [
+  { name: "Distance From Me", value: "distance" },
+  { name: "Clinic Name", value: "name" }
+];
+
 class ClinicListPage extends Component {
   state = {
-    clinicList: [],
-    userAddress: {
-      latitude: null,
-      longitude: null
-    },
-    sortByOptions: [
-      { name: "Distance From Me", value: "distance" },
-      { name: "Clinic Name", value: "name" }
-    ],
     selectedSortBy: "name"
   };
-
-  componentDidMount() {
-    // console.log("clinic list passed down from App: ", clinicList);
-    const { mapInitialCenter } = this.props;
-    const { combinedClinicList } = this.props;
-    const currentLocation = mapInitialCenter;
-    const clinicList = combinedClinicList;
-
-    this.setState({ clinicList: clinicList, userAddress: currentLocation });
-  }
 
   handleSortSelect = event => {
     const selectedOption = event.target.value;
@@ -47,12 +34,9 @@ class ClinicListPage extends Component {
   };
 
   render() {
-    const {
-      clinicList,
-      sortByOptions,
-      selectedSortBy,
-      userAddress
-    } = this.state;
+    const { selectedSortBy } = this.state;
+    const { mapInitialCenter: userAddress } = this.props;
+    const { combinedClinicList: clinicList } = this.props;
 
     const sortedClinicList = this.sortClincs();
 
@@ -64,7 +48,7 @@ class ClinicListPage extends Component {
           </div>
           <div className="col-6">
             <SortBySelect
-              options={sortByOptions}
+              options={SORT_BY_OPTIONS}
               selected={selectedSortBy}
               handleSelect={this.handleSortSelect}
             />
