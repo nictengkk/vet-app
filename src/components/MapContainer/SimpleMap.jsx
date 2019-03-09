@@ -3,8 +3,6 @@ import { render } from "react-dom";
 import MapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
 import ClinicPin from "./ClinicPin";
 import ClinicInfo from "./Clinicinfo";
-// import Clinics from "../../services/db.json";
-// import DeckGL, { ArcLayer } from "deck.gl";
 
 const TOKEN =
   "pk.eyJ1IjoibmljdGVuZ2trIiwiYSI6ImNqc3ZzbGd2bjBhZGkzeXFqcTBweXp6bTAifQ.kgYrCJV7DQ_wyYcZ4PA4FA";
@@ -31,20 +29,13 @@ export default class App extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.userAddress.longitude === prevProps.userAddress.longitude &&
-      this.props.userAddress.latitude === prevProps.userAddress.latitude
-    ) {
-      return;
-    }
+  componentDidMount() {
     const { userAddress } = this.props;
     const viewport = { ...this.state.viewport };
     viewport.longitude = userAddress.longitude;
     viewport.latitude = userAddress.latitude;
     viewport.zoom = 13;
-    console.log("component updating", viewport);
-    this.setState({ viewport: viewport });
+    this.setState({ viewport });
   }
 
   _updateViewport = viewport => {
@@ -52,7 +43,6 @@ export default class App extends Component {
   };
 
   _renderCityMarker = (clinic, index) => {
-    console.log("in renderCityMarker: ", clinic.coordinates);
     return (
       clinic.coordinates.Longitude &&
       clinic.coordinates.Latitude && (
@@ -72,7 +62,6 @@ export default class App extends Component {
 
   _renderPopup() {
     const { popupInfo } = this.state;
-    console.log("popupInfo: ", popupInfo);
 
     return (
       popupInfo && (
@@ -93,7 +82,6 @@ export default class App extends Component {
   render() {
     const { viewport } = this.state;
     const { clinics } = this.props;
-    console.log("clinic list to be marked: ", clinics[0]);
     return (
       <MapGL
         {...viewport}
