@@ -4,7 +4,7 @@ export const getDistance = async (userAddress, list) => {
     list.map(async clinic => {
       try {
         const response = await fetch(
-          `http://www.mapquestapi.com/directions/v2/route?key=${
+          `https://www.mapquestapi.com/directions/v2/route?key=${
             process.env.REACT_APP_MAPQUEST_API_KEY
           }&from=${userAddress}&to=${clinic.postal_code}`
         );
