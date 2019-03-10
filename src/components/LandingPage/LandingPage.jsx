@@ -81,30 +81,6 @@ class LandingPage extends Component {
   };
 
   render() {
-    // const testUserAddress = {
-    //   latitude: 1.38476,
-    //   longitude: 103.86008
-    // };
-    // const newList = [
-    //   {
-    //     latitude: 1.36362,
-    //     longitude: 103.84852,
-    //     Name: "Acacia Veterinary Clinic",
-    //     PostCode: "560338"
-    //   },
-    //   {
-    //     latitude: 1.42638,
-    //     longitude: 103.82773,
-    //     Name: "AAVC - Animal & Avian Veterinary Clinic",
-    //     PostCode: "760716"
-    //   }
-    // ];
-
-    // console.log(
-    //   "result sorted by distance",
-    //   geolib.orderByDistance(testUserAddress, newList)
-    // );
-
     return (
       <div className="bg container-fluid d-flex align-items-center justify-content-center">
         <div className="transparent-input">
@@ -116,7 +92,10 @@ class LandingPage extends Component {
               placeholder="Your Current Location"
               type="text"
             />
-            <button type="submit" className="btn btn-outline-success mt-2">
+            <button
+              type="submit"
+              className="btn btn-md btn-outline-success mt-2"
+            >
               Find Your Nearest Vet
             </button>
           </form>
