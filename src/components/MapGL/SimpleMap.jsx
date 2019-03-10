@@ -92,6 +92,7 @@ export default class App extends Component {
         mapboxApiAccessToken={TOKEN}
       >
         {clinics.length >= 1 ? clinics.map(this._renderCityMarker) : null}
+
         {this._displayPopup(popupInfo)}
         <div className="nav" style={navStyle}>
           <NavigationControl onViewportChange={this._updateViewport} />

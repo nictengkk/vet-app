@@ -1,18 +1,8 @@
 import React from "react";
 
 function ClinicTable({ clinicList }) {
-  //   const sortedList = clinicsList.sort((first, second) => {
-  //     if (first.name < second.name) return -1;
-  //     if (first.name > second.name) return 1;
-  //     return 0;
-  //   });
-
-  //   const number = () => {};
-
   const styles = {
-    // height: window.innerHeight,
     width: 550
-    // overflow: "scroll"
   };
 
   const tableBodyStyles = {
@@ -41,9 +31,7 @@ function ClinicTable({ clinicList }) {
               <td>{clinic.postal_code}</td>
               <td>{clinic.type}</td>
               <td>{clinic.tel_office_1}</td>
-              <td>
-                {}`${clinic.results} km`
-              </td>
+              <td>{`${clinic.results.toFixed(2)} km`}</td>
             </tr>
           ))}
         </tbody>
