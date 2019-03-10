@@ -57,7 +57,7 @@ export const getClinics = async () => {
       const combinedList = Object.assign({ ...clinic }, ...foundCoordinates);
       return combinedList;
     });
-    console.log(combinedClinicList);
+    // console.log(combinedClinicList);
     return combinedClinicList;
   } catch (err) {
     console.log(err);

@@ -1,5 +1,5 @@
 export const getDistance = async (userAddress, list) => {
-  console.log(list);
+  // console.log(list);
   const distances = await Promise.all(
     list.map(async clinic => {
       try {

@@ -24,7 +24,7 @@ class ClinicDrawer extends Component {
     //database of combined clinic list with long and latitudes
     const { data } = this.props;
     const clinicList = data;
-    console.log(data);
+    // console.log(data);
     return (
       <div>
         <Button type="primary" onClick={this.showDrawer}>

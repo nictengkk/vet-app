@@ -77,7 +77,7 @@ const getClinics = async () => {
     const data = await response.json();
     const clinics = data.result.records;
     const coordinates = await getCoordinates(clinics);
-    console.log(coordinates);
+    // console.log(coordinates);
     const copyClinicList = [...clinicList];
     const combinedClinicList = copyClinicList.map(clinic => {
       const matchPostCode = clinic.postal_code;
