@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import MapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
 import ClinicPin from "./ClinicPin";
+import UserPin from "./UserPin";
 import ClinicInfo from "./Clinicinfo";
 
 const TOKEN =
@@ -60,6 +61,19 @@ export default class App extends Component {
     );
   };
 
+  _renderPosition = (longitude, latitude) => {
+    const { viewport } = this.state;
+    return (
+      <Marker
+        key={`marker-center`}
+        longitude={viewport.longitude}
+        latitude={viewport.latitude}
+      >
+        <UserPin size={30} />
+      </Marker>
+    );
+  };
+
   _displayPopup = popupInfo => {
     const { userAddress } = this.props;
     return (
@@ -91,6 +105,7 @@ export default class App extends Component {
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN}
       >
+        {this._renderPosition()}
         {clinics.length >= 1 ? clinics.map(this._renderCityMarker) : null}
 
         {this._displayPopup(popupInfo)}
