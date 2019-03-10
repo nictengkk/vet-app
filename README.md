@@ -1,6 +1,18 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Find-Your-Nearest-Vet
 
-## Available Scripts
+A simple to use app to find your nearest vet, bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Features include:
+
+1. Locating vet clinics within distance from user
+2. Clinic details all within the database
+3. Ability to sort by alphabetical order or distance
+
+<!-- ### Setup -->
+
+Clone repository into a local directory
+
+<!-- ## Available Scripts
 
 In the project directory, you can run:
 
@@ -65,4 +77,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 ### `npm run build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify -->
