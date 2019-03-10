@@ -52,7 +52,7 @@ export default class App extends Component {
           latitude={clinic.coordinates.Latitude}
         >
           <ClinicPin
-            size={20}
+            size={10}
             onClick={() => this.setState({ popupInfo: clinic })}
           />
         </Marker>
@@ -60,9 +60,8 @@ export default class App extends Component {
     );
   };
 
-  _renderPopup() {
-    const { popupInfo } = this.state;
-
+  _displayPopup = popupInfo => {
+    const { userAddress } = this.props;
     return (
       popupInfo && (
         <Popup
@@ -73,15 +72,16 @@ export default class App extends Component {
           closeOnClick={false}
           onClose={() => this.setState({ popupInfo: null })}
         >
-          <ClinicInfo info={popupInfo} />
+          <ClinicInfo info={popupInfo} userAddress={userAddress} />
         </Popup>
       )
     );
-  }
+  };
 
   render() {
-    const { viewport } = this.state;
+    const { viewport, popupInfo } = this.state;
     const { clinics } = this.props;
+    // console.log(clinics);
     return (
       <MapGL
         {...viewport}
@@ -92,7 +92,7 @@ export default class App extends Component {
         mapboxApiAccessToken={TOKEN}
       >
         {clinics.length >= 1 ? clinics.map(this._renderCityMarker) : null}
-        {this._renderPopup}
+        {this._displayPopup(popupInfo)}
         <div className="nav" style={navStyle}>
           <NavigationControl onViewportChange={this._updateViewport} />
         </div>
