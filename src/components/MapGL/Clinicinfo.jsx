@@ -20,7 +20,6 @@ export default class ClinicInfo extends PureComponent {
             Directions
           </a>
         </div>
-        {/* <img width={240} src={info.image} /> */}
       </div>
     );
   }

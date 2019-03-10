@@ -8,7 +8,7 @@ const pinStyle = {
 
 export default class ClinicPin extends PureComponent {
   render() {
-    const { size = 20, onClick } = this.props;
+    const { size = 25, onClick } = this.props;
 
     return (
       <i

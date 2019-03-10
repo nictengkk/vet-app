@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import * as geolib from "geolib";
 import { getCoordinate, getCoordinates } from "../../services/getCoordinates";
 import { getDistance, combineData } from "../../services/distanceMatrix";
 import "./LandingPage.css";
@@ -37,20 +36,6 @@ class LandingPage extends Component {
       console.log(error);
     }
   }
-
-  // async componentDidUpdate(prevProps, prevState) {
-  //   if (
-  //     this.state.userAddress === prevState.userAddress &&
-  //     this.state.clinicList === prevState.clinicList
-  //   ) {
-  //     return;
-  //   }
-  //   const results = await getDistance(
-  //     this.state.userAddress,
-  //     this.state.clinicList
-  //   );
-  //   console.log(results);
-  // }
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -94,7 +79,7 @@ class LandingPage extends Component {
             />
             <button
               type="submit"
-              className="btn btn-md btn-outline-success mt-2"
+              className="btn btn-lg btn-outline-success mt-2"
             >
               Find Your Nearest Vet
             </button>
