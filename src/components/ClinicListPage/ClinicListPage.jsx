@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import SimpleMap from "../MapGL/SimpleMap";
 import ClinicTable from "../ClinicTable/ClinicTable";
 import SortBySelect from "../SortBySelect/SortBySelect";
-// import "geolib";
-// import { getClinics } from "../../services/getCoordinates";
-// import Clinics from "../../services/db.json";
 
 const SORT_BY_OPTIONS = [
   { name: "Distance From Me", value: "results" },
@@ -13,12 +10,18 @@ const SORT_BY_OPTIONS = [
 
 class ClinicListPage extends Component {
   state = {
-    selectedSortBy: "name"
+    selectedSortBy: "results",
+    filterBy: ""
   };
 
   handleSortSelect = event => {
     const selectedOption = event.target.value;
     this.setState({ selectedSortBy: selectedOption });
+  };
+
+  handleFilter = event => {
+    const filterOption = event.target.value;
+    this.setState({ filterBy: filterOption });
   };
 
   sortClincs = () => {
@@ -37,10 +40,19 @@ class ClinicListPage extends Component {
     const { selectedSortBy } = this.state;
     const { mapInitialCenter: userAddress } = this.props;
     const { combinedClinicList: clinicList } = this.props;
-    console.log(userAddress);
+    // console.log(clinicList);
+
+    // const filterList = list => {
+    //   if (filterBy) {
+    //     return list.filter(listItem => {
+    //       listItem.name.startsWith(filterBy);
+    //     });
+    //   }
+    //   return list;
+    // };
 
     const sortedClinicList = this.sortClincs();
-
+    // const filteredSortedList = filterList(sortedClinicList);
     return (
       <div className="container">
         <div className="row">
@@ -52,6 +64,13 @@ class ClinicListPage extends Component {
               options={SORT_BY_OPTIONS}
               selected={selectedSortBy}
               handleSelect={this.handleSortSelect}
+            />
+            <label>Filter by: </label>
+            <input
+              name="name"
+              className="form-control mb-2"
+              onChange={this.handleFilter}
+              type="text"
             />
             <ClinicTable
               className="col-6 d-flex flex-column"
