@@ -7,7 +7,7 @@ import SortBySelect from "../SortBySelect/SortBySelect";
 // import Clinics from "../../services/db.json";
 
 const SORT_BY_OPTIONS = [
-  { name: "Distance From Me", value: "distance" },
+  { name: "Distance From Me", value: "results" },
   { name: "Clinic Name", value: "name" }
 ];
 

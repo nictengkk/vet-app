@@ -10,9 +10,9 @@ function ClinicTable({ clinicList }) {
   //   const number = () => {};
 
   const styles = {
-    height: window.innerHeight,
-    width: 550,
-    overflow: "scroll"
+    // height: window.innerHeight,
+    width: 550
+    // overflow: "scroll"
   };
 
   const tableBodyStyles = {
@@ -41,7 +41,9 @@ function ClinicTable({ clinicList }) {
               <td>{clinic.postal_code}</td>
               <td>{clinic.type}</td>
               <td>{clinic.tel_office_1}</td>
-              {/* <td>{clinic.distance}</td> */}
+              <td>
+                {}`${clinic.results} km`
+              </td>
             </tr>
           ))}
         </tbody>
