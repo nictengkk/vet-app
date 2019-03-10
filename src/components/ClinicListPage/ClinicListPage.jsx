@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SimpleMap from "../MapContainer/SimpleMap";
+import SimpleMap from "../MapGL/SimpleMap";
 import ClinicTable from "../ClinicTable/ClinicTable";
 import SortBySelect from "../SortBySelect/SortBySelect";
 // import "geolib";
@@ -37,6 +37,7 @@ class ClinicListPage extends Component {
     const { selectedSortBy } = this.state;
     const { mapInitialCenter: userAddress } = this.props;
     const { combinedClinicList: clinicList } = this.props;
+    console.log(userAddress);
 
     const sortedClinicList = this.sortClincs();
 

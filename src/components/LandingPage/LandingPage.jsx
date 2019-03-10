@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getCoordinate, getCoordinates } from "../../services/getCoordinates";
-// import 'landingPage.css'
+import "./LandingPage.css";
 class LandingPage extends Component {
   state = {
     clinicList: [],
@@ -29,6 +29,7 @@ class LandingPage extends Component {
       const filteredCombinedClinicList = combinedClinicList.filter(
         clinic => !!clinic.coordinates
       );
+      console.log(filteredCombinedClinicList);
       this.setState({ clinicList: filteredCombinedClinicList });
     } catch (error) {
       console.log(error);
@@ -57,21 +58,22 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <div className="container-fluid d-flex align-items-center">
-        <h3>{"Please enter your Address or Postcode"}</h3>
-        <input
-          name="address"
-          onChange={this.handleUserAddress}
-          className="form-control mr-2"
-          placeholder="Your Current Location"
-          type="text"
-        />
-        <button
-          className="btn btn-outline-success mt-2"
-          onClick={this.handleClick}
-        >
-          Find Your Nearest Vet
-        </button>
+      <div className="bg container-fluid d-flex align-items-center justify-content-center">
+        <div className="transparent-input">
+          <input
+            name="address"
+            onChange={this.handleUserAddress}
+            className="form-control mr-2"
+            placeholder="Your Current Location"
+            type="text"
+          />
+          <button
+            className="btn btn-outline-success mt-2"
+            onClick={this.handleClick}
+          >
+            Find Your Nearest Vet
+          </button>
+        </div>
       </div>
     );
   }

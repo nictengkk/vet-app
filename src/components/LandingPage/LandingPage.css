@@ -1,0 +1,14 @@
+.bg {
+  background-image: url("https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjy3f2BjvfgAhWIQI8KHflBA8wQjRx6BAgBEAU&url=https%3A%2F%2Fwww.entwellbeing.com.au%2Fpain-relief-without-drugs%2F&psig=AOvVaw1ZaErOb0CUJq805oHgGtOh&ust=1552291326750791");
+  width: 100%;
+  height: 600px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.transparent-input {
+  background: tranparent;
+}

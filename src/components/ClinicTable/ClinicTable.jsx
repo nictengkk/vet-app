@@ -27,9 +27,10 @@ function ClinicTable({ clinicList }) {
           <tr>
             <th>Name</th>
             <th>Address</th>
-            <th>Type</th>
             <th>Postal Code</th>
+            <th>Type</th>
             <th>Contact Number</th>
+            <th>Distance</th>
           </tr>
         </thead>
         <tbody>
@@ -37,9 +38,10 @@ function ClinicTable({ clinicList }) {
             <tr key={clinic._id} data-testid="clinic-table-row">
               <td>{clinic.name}</td>
               <td>{clinic.address.Label}</td>
-              <td>{clinic.type}</td>
               <td>{clinic.postal_code}</td>
+              <td>{clinic.type}</td>
               <td>{clinic.tel_office_1}</td>
+              {/* <td>{clinic.distance}</td> */}
             </tr>
           ))}
         </tbody>

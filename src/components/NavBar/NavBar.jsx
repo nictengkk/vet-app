@@ -5,7 +5,7 @@ function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
       <Link className="navbar-brand" to="/">
-        <i className="fas fa-clinic-medical"> Find Your Nearest Vet </i>
+        <i className="fas fa-paw"> Find Your Nearest Vet </i>
       </Link>
       <button
         className="navbar-toggler"
