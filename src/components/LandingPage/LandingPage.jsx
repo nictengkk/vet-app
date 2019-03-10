@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+// import * as geolib from "geolib";
 import { getCoordinate, getCoordinates } from "../../services/getCoordinates";
+import { getDistance, combineData } from "../../services/distanceMatrix";
 import "./LandingPage.css";
 class LandingPage extends Component {
   state = {
@@ -36,16 +38,38 @@ class LandingPage extends Component {
     }
   }
 
-  handleClick = async () => {
+  // async componentDidUpdate(prevProps, prevState) {
+  //   if (
+  //     this.state.userAddress === prevState.userAddress &&
+  //     this.state.clinicList === prevState.clinicList
+  //   ) {
+  //     return;
+  //   }
+  //   const results = await getDistance(
+  //     this.state.userAddress,
+  //     this.state.clinicList
+  //   );
+  //   console.log(results);
+  // }
+
+  handleSubmit = async event => {
+    event.preventDefault();
+    const results = await getDistance(
+      this.state.userAddress,
+      this.state.clinicList
+    );
+    const newCombinedList = combineData(this.state.clinicList, results);
+    console.log(newCombinedList);
     const response = await getCoordinate(this.state.userAddress);
     const lat = response.coordinates.Latitude;
     const long = response.coordinates.Longitude;
     this.props.handleUserCoordinates(lat, long); //this method passed down from the parent takes in the arguments from the child and processes it back in the parent.
-    this.props.handleCombinedClinicList(this.state.clinicList);
+    this.props.handleCombinedClinicList(newCombinedList);
     this.props.history.push("/clinics");
   };
 
   handleUserAddress = event => {
+    // this.getDistance();
     let userAddress = { ...this.state.userAddress };
     let userAddressJoined = event.target.value.split(" ");
     userAddressJoined.push("Singapore");
@@ -57,22 +81,45 @@ class LandingPage extends Component {
   };
 
   render() {
+    // const testUserAddress = {
+    //   latitude: 1.38476,
+    //   longitude: 103.86008
+    // };
+    // const newList = [
+    //   {
+    //     latitude: 1.36362,
+    //     longitude: 103.84852,
+    //     Name: "Acacia Veterinary Clinic",
+    //     PostCode: "560338"
+    //   },
+    //   {
+    //     latitude: 1.42638,
+    //     longitude: 103.82773,
+    //     Name: "AAVC - Animal & Avian Veterinary Clinic",
+    //     PostCode: "760716"
+    //   }
+    // ];
+
+    // console.log(
+    //   "result sorted by distance",
+    //   geolib.orderByDistance(testUserAddress, newList)
+    // );
+
     return (
       <div className="bg container-fluid d-flex align-items-center justify-content-center">
         <div className="transparent-input">
-          <input
-            name="address"
-            onChange={this.handleUserAddress}
-            className="form-control mr-2"
-            placeholder="Your Current Location"
-            type="text"
-          />
-          <button
-            className="btn btn-outline-success mt-2"
-            onClick={this.handleClick}
-          >
-            Find Your Nearest Vet
-          </button>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              name="address"
+              onChange={this.handleUserAddress}
+              className="form-control mr-2"
+              placeholder="Your Current Location"
+              type="text"
+            />
+            <button type="submit" className="btn btn-outline-success mt-2">
+              Find Your Nearest Vet
+            </button>
+          </form>
         </div>
       </div>
     );
