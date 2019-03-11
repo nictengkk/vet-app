@@ -40,7 +40,7 @@ class ClinicListPage extends Component {
     const { selectedSortBy } = this.state;
     const { mapInitialCenter: userAddress } = this.props;
     const { combinedClinicList: clinicList } = this.props;
-    console.log(userAddress);
+    // console.log(userAddress);
 
     // const filterList = list => {
     //   if (filterBy) {
