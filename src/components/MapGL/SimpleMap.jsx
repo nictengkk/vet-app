@@ -62,13 +62,9 @@ export default class App extends Component {
   };
 
   _renderPosition = (longitude, latitude) => {
-    const { viewport } = this.state;
+    // const { viewport } = this.state;
     return (
-      <Marker
-        key={`marker-center`}
-        longitude={viewport.longitude}
-        latitude={viewport.latitude}
-      >
+      <Marker key={`marker-center`} longitude={longitude} latitude={latitude}>
         <UserPin size={30} />
       </Marker>
     );
@@ -94,8 +90,7 @@ export default class App extends Component {
 
   render() {
     const { viewport, popupInfo } = this.state;
-    const { clinics } = this.props;
-    // console.log(clinics);
+    const { clinics, userAddress } = this.props;
     return (
       <MapGL
         {...viewport}
@@ -105,7 +100,7 @@ export default class App extends Component {
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN}
       >
-        {this._renderPosition()}
+        {this._renderPosition(userAddress.longitude, userAddress.latitude)}
         {clinics.length >= 1 ? clinics.map(this._renderCityMarker) : null}
 
         {this._displayPopup(popupInfo)}

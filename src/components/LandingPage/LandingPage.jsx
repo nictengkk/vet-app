@@ -30,6 +30,7 @@ class LandingPage extends Component {
       const filteredCombinedClinicList = combinedClinicList.filter(
         clinic => !!clinic.coordinates
       );
+      // console.log(filteredCombinedClinicList);
       this.setState({ clinicList: filteredCombinedClinicList });
     } catch (error) {
       console.log(error);
