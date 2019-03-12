@@ -94,7 +94,7 @@ export default class App extends Component {
     return (
       <MapGL
         {...viewport}
-        width={550}
+        width={"100%"}
         height={650}
         // mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={this._updateViewport}

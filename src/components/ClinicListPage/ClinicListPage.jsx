@@ -56,10 +56,10 @@ class ClinicListPage extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-6">
+          <div className="col-sm-12 col-lg-6">
             <SimpleMap userAddress={userAddress} clinics={clinicList} />
           </div>
-          <div className="col-6">
+          <div className="col-sm-12 col-lg-6">
             <SortBySelect
               options={SORT_BY_OPTIONS}
               selected={selectedSortBy}

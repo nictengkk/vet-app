@@ -37,6 +37,7 @@ class LandingPage extends Component {
     }
   }
 
+  //push loader insde handle submit, to push the page into the loading component?
   handleSubmit = async event => {
     event.preventDefault();
     const results = await getDistance(
