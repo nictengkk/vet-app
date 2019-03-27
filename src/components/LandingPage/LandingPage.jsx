@@ -23,14 +23,14 @@ class LandingPage extends Component {
           e => e.address.PostalCode === matchPostCode
         );
         const combinedList = Object.assign({ ...clinic }, ...foundCoordinates);
-
+        console.log(combinedList);
         return combinedList;
       });
 
       const filteredCombinedClinicList = combinedClinicList.filter(
         clinic => !!clinic.coordinates
       );
-      // console.log(filteredCombinedClinicList);
+      console.log(filteredCombinedClinicList);
       this.setState({ clinicList: filteredCombinedClinicList });
     } catch (error) {
       console.log(error);
@@ -45,7 +45,6 @@ class LandingPage extends Component {
       this.state.clinicList
     );
     const newCombinedList = combineData(this.state.clinicList, results);
-    // console.log(newCombinedList);
     const response = await getCoordinate(this.state.userAddress);
     const lat = response.coordinates.Latitude;
     const long = response.coordinates.Longitude;

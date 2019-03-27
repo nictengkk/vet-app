@@ -6,8 +6,6 @@
     "@fortawesome/fontawesome-free": "^5.7.2",
     "antd": "^3.14.1",
     "bootstrap": "^4.3.1",
-    "deck.gl": "^6.4.5",
-    "google-maps-react": "^2.0.2",
     "jest-dom": "^3.1.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
@@ -32,6 +30,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "nodemon": "^1.18.10",
     "react-testing-library": "^6.0.0"
   }
 }

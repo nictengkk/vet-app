@@ -11,7 +11,7 @@ describe("ClinicList", () => {
     "P.A.W. (People Animal Wellness) Veterinary Centre Pte Ltd";
   const sampleType = "Clinic";
 
-  jest.mock("./ClinicList", () => {
+  jest.mock("./ClinicListPage", () => {
     const sampleResult = [
       {
         name: "P.A.W. (People Animal Wellness) Veterinary Centre Pte Ltd",

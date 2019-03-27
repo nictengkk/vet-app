@@ -52,6 +52,8 @@ class ClinicListPage extends Component {
     // };
 
     const sortedClinicList = this.sortClincs();
+
+    console.log(sortedClinicList);
     // const filteredSortedList = filterList(sortedClinicList);
     return (
       <div className="container">
@@ -61,6 +63,7 @@ class ClinicListPage extends Component {
           </div>
           <div className="col-sm-12 col-lg-6">
             <SortBySelect
+              className="mb-2"
               options={SORT_BY_OPTIONS}
               selected={selectedSortBy}
               handleSelect={this.handleSortSelect}

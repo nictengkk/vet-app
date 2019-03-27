@@ -69,26 +69,26 @@ let coordinates = [
   }
 ];
 
-const getClinics = async () => {
-  try {
-    const response = await fetch(
-      "https://data.gov.sg/api/action/datastore_search?resource_id=b2871270-4eef-44a3-be98-908e2a73b19f"
-    );
-    const data = await response.json();
-    const clinics = data.result.records;
-    const coordinates = await getCoordinates(clinics);
-    // console.log(coordinates);
-    const copyClinicList = [...clinicList];
-    const combinedClinicList = copyClinicList.map(clinic => {
-      const matchPostCode = clinic.postal_code;
-      const foundCoordinates = coordinates.filter(
-        e => e.address.PostalCode === matchPostCode
-      );
-      const combinedList = Object.assign({ ...clinic }, ...foundCoordinates);
-      return combinedList;
-    });
-    return combinedClinicList;
-  } catch (err) {
-    console.log(err);
-  }
-};
+// const getClinics = async () => {
+//   try {
+//     const response = await fetch(
+//       "https://data.gov.sg/api/action/datastore_search?resource_id=b2871270-4eef-44a3-be98-908e2a73b19f"
+//     );
+//     const data = await response.json();
+//     const clinics = data.result.records;
+//     const coordinates = await getCoordinates(clinics);
+//     // console.log(coordinates);
+//     const copyClinicList = [...clinicList];
+//     const combinedClinicList = copyClinicList.map(clinic => {
+//       const matchPostCode = clinic.postal_code;
+//       const foundCoordinates = coordinates.filter(
+//         e => e.address.PostalCode === matchPostCode
+//       );
+//       const combinedList = Object.assign({ ...clinic }, ...foundCoordinates);
+//       return combinedList;
+//     });
+//     return combinedClinicList;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
