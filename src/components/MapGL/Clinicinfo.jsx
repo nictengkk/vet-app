@@ -1,12 +1,18 @@
 import React, { PureComponent } from "react";
+import { Link } from "react-router-dom";
 
 export default class ClinicInfo extends PureComponent {
   render() {
-    // const { info } = this.props;
     const { info, userAddress } = this.props;
     const currentLocation = `${userAddress.latitude},${userAddress.longitude}`;
     const displayName = `${info.name}`;
+    const id = `${info.id}`;
     const postCode = `${info.address.PostalCode}`;
+
+    const clinicDetail = {
+      pathname: `/clinics/${id}`,
+      state: { info: info }
+    };
 
     return (
       <div>
@@ -19,6 +25,8 @@ export default class ClinicInfo extends PureComponent {
           >
             Directions
           </a>
+          {""} | {""}
+          <Link to={clinicDetail}>More Info</Link>
         </div>
       </div>
     );
