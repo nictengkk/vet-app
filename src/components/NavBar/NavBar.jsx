@@ -22,14 +22,14 @@ function NavBar() {
       </div>
       {/* <div className="collapse navbar-collapse" id="navbarNavAltMarkup"> */}
       <div className="navbar-nav">
-        <NavLink className="nav-item nav-link" to="/clinics">
-          <i class="fas fa-clinic-medical"> Clinics </i>
+        <NavLink className="nav-item nav-link" to="/admin">
+          <i className="fas fa-clinic-medical"> Admin </i>
         </NavLink>
         <NavLink className="nav-item nav-link" to="/login">
-          <i class="fas fa-sign-in-alt"> Login </i>
+          <i className="fas fa-sign-in-alt"> Login </i>
         </NavLink>
         <NavLink className="nav-item nav-link" to="/signup">
-          <i class="fas fa-user-plus"> Signup </i>
+          <i className="fas fa-user-plus"> Signup </i>
         </NavLink>
       </div>
       {/* </div> */}
