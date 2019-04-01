@@ -25,12 +25,12 @@ function ClinicTable({ clinicList }) {
         </thead>
         <tbody>
           {clinicList.map(clinic => (
-            <tr key={clinic._id} data-testid="clinic-table-row">
+            <tr key={clinic.id} data-testid="clinic-table-row">
               <td>{clinic.name}</td>
-              <td>{clinic.address.Label}</td>
+              <td>{clinic.address}</td>
               <td>{clinic.postal_code}</td>
               <td>{clinic.type}</td>
-              <td>{clinic.tel_office_1}</td>
+              <td>{clinic.tel_office}</td>
               <td>{`${clinic.results.toFixed(2)} km`}</td>
             </tr>
           ))}

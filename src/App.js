@@ -45,7 +45,7 @@ class App extends Component {
             <Route path="/admin"  component={ClinicsAdmin} />
             <Route
               path="/home"
-              render={props => (
+             render={props => (
                 <LandingPage
                   handleCombinedClinicList={this.getCombinedClinicList}
                   handleUserCoordinates={this.getUserCoordinatesFromInput}
