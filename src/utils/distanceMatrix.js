@@ -21,20 +21,17 @@ export const getDistance = async (userAddress, list) => {
   //prepare data here and return combined data
 };
 
-export const combineData = (list, list2) => {
-  let copyList = [...list];
-  const newList = copyList.map(clinic => {
-    const matchPostCode = clinic.postal_code;
-    const filteredClinics = list2.filter(obj => {
-      if (!!obj.matchingPostCode) {
-        return obj.matchingPostCode[1].postalCode === matchPostCode;
-      } else {
-        return false;
-      }
+export const combineData = (clinicList, resultList) => {
+  let copyList = [...clinicList];
+  const combinedList = copyList.map(clinic => {
+    const matchPostCode = clinic.postal_code.toString();
+    const filteredClinic = resultList.find(({ results, matchingPostCode }) => {
+      return matchingPostCode[1].postalCode === matchPostCode;
     });
-    const newCombinedList = Object.assign({ ...clinic }, ...filteredClinics);
-    return newCombinedList;
+    clinic.results = filteredClinic.results;
+    return clinic;
   });
-  const filteredList = newList.filter(clinic => !!clinic.results);
-  return filteredList;
+  return combinedList;
+  // const filteredList = newList.filter(clinic => !!clinic.results);
+  // return filteredList;
 };
