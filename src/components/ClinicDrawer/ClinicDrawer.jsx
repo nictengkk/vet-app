@@ -39,7 +39,7 @@ class ClinicDrawer extends Component {
         >
           {clinicList.map(clinic => (
             <div className="card-col">
-              <Clinic key={clinic._id} name={clinic.name} type={clinic.type} />
+              <Clinic key={clinic.id} name={clinic.name} type={clinic.type} />
             </div>
           ))}
         </Drawer>

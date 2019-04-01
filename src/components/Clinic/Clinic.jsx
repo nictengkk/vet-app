@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Clinic({ name, type }) {
+function Clinic(props) {
   // const styles = { width: "18rem" };
 
-  // const { details } = props;
+  const { name, type, style, data } = props;
   return (
-    <div className="card my-3">
+    <div className="card my-3" style={style}>
       {/* <img src={images} className="card-img-top img-fluid" alt="clinic" /> */}
       <div className="card-body">
         <h5 className="card-title" data-testid="restaurant-card-title">
