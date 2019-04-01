@@ -15,8 +15,8 @@ class Review extends Component {
         <blockquote className="blockquote">
           <Icon type="star" theme="filled" />
           <Icon type="star" theme="filled" />
-          <Icon type="star" />
-          <Icon type="star" />
+          <Icon type="star" theme="filled" />
+          <Icon type="star" theme="filled" />
           <Icon type="star" />
           <p className="mb-0">{review.description}</p>
           <footer className="blockquote-footer">
