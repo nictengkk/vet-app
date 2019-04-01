@@ -18,7 +18,6 @@ function ClinicTable({ clinicList }) {
             <th>Name</th>
             <th>Address</th>
             <th>Postal Code</th>
-            <th>Type</th>
             <th>Contact Number</th>
             <th>Distance</th>
           </tr>
@@ -29,7 +28,6 @@ function ClinicTable({ clinicList }) {
               <td>{clinic.name}</td>
               <td>{clinic.address}</td>
               <td>{clinic.postal_code}</td>
-              <td>{clinic.type}</td>
               <td>{clinic.tel_office}</td>
               <td>{`${clinic.results.toFixed(2)} km`}</td>
             </tr>
