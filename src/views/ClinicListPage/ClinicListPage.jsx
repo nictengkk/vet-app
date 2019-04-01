@@ -29,14 +29,13 @@ class ClinicListPage extends Component {
     const { combinedClinicList } = this.props;
     const clinicList = combinedClinicList;
 
-    const filteredClinics = clinicList.filter(
-      c =>
-        c.name.includes(filterBy.toLowerCase()) ||
-        c.address.Label.includes(filterBy.toLowerCase())
-    );
+    // const filteredClinics = clinicList.filter(
+    //   c =>
+    //     c.name.includes(filterBy.toLowerCase()) ||
+    //     c.address.Label.includes(filterBy.toLowerCase())
+    // );
 
-
-    return filteredClinics.sort((first, second) => {
+    return clinicList.sort((first, second) => {
       if (first[selectedSortBy] < second[selectedSortBy]) return -1;
       if (first[selectedSortBy] > second[selectedSortBy]) return 1;
       return 0;
