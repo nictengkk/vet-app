@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 const isDev = process.env.NODE_ENV !== "production";
 const getUrl = isDev
@@ -19,6 +20,28 @@ export default class LoginPage extends Component {
     this.setState({ initialFormValues: data });
   };
 
+  handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      const res = await fetch(`${getUrl}/login`, {
+        method: "POST",
+        body: JSON.stringify(this.state.initialFormValues),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include"
+      });
+      const data = await res.json();
+      const { status } = res;
+      if (status === 401) {
+        throw new Error("Login failed, please try again");
+      }
+      localStorage.setItem("user", JSON.stringify(data));
+      this.props.history.push("/");
+    } catch (error) {
+      alert("access denied");
+      console.error(error);
+    }
+  };
+
   render() {
     const { email, password } = this.state.initialFormValues;
     return (
@@ -27,7 +50,7 @@ export default class LoginPage extends Component {
           <h3>Login</h3>
         </div>
         <div className="row d-flex flex-row justify-content-center">
-          <form className="px-4 py-3">
+          <form className="px-4 py-3" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label htmlFor="exampleDropdownFormEmail1">
                 Registered Email
@@ -71,9 +94,7 @@ export default class LoginPage extends Component {
             </button>
             <br />
             <div className="my-2">
-              <a href="#">New around here? Sign up!</a>
-              <br />
-              <a href="#">Forgot password?</a>
+              <Link to={"/signup"}>New around here? Sign up!</Link>
             </div>
           </form>
         </div>

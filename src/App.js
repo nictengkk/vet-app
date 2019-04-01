@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import ClinicListPage from "./components/ClinicListPage/ClinicListPage";
-import ClinicInfoPage from "../src/components/ClinicInfoPage/ClinicInfoPage";
-import LandingPage from "./components/LandingPage/LandingPage";
+import ClinicListPage from "./views/ClinicListPage/ClinicListPage";
+import ClinicInfoPage from "./views/ClinicInfoPage/ClinicInfoPage";
+import LandingPage from "./views/LandingPage/LandingPage";
+import SignupPage from "./views/SignupPage/SignupPage";
+import LoginPage from "./views/LoginPage/LoginPage";
+import ClinicsAdmin from "./views/ClinicsAdmin/ClinicsAdmin";
+
 import NavBar from "./components/NavBar/NavBar";
+import ClinicForm from "./components/ClinicForm/ClinicForm";
 
 import "./App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -35,6 +40,9 @@ class App extends Component {
         <div>
           <NavBar />
           <Switch>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" component={SignupPage} />
+            <Route path="/admin"  component={ClinicsAdmin} />
             <Route
               path="/home"
               render={props => (
@@ -44,6 +52,14 @@ class App extends Component {
                   {...props}
                 />
               )}
+            />
+            <Route
+              path="/clinics/new"
+              render={props => <ClinicForm {...props} returnPath="/admin" />}
+            />
+            <Route
+              path="/clinics/edit/:id/"
+              render={props => <ClinicForm {...props} returnPath="/admin" />}
             />
             <Route
               path="/clinics/:id"

@@ -12,14 +12,24 @@ class ClinicsAdmin extends Component {
     clinics: []
   };
 
-  //   handleDelete = restaurantId => {
-  //     deleteRestaurant(restaurantId);
-  //     this.setState({ restaurants: getRestaurants() });
-  //   };
+  handleDelete = async id => {
+    try {
+      const { clinics } = this.state;
+      const res = await fetch(`${getUrl}/api/clinics/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include"
+      });
+      if (res.status !== 202) {
+        throw new Error("Not authorised to delete clinics");
+      }
 
-  handleDelete = () => {
+      const updatedClinics = clinics.filter(clinic => clinic.id !== id);
+      this.setState({ clinics: updatedClinics });
+    } catch (error) {
+      console.error(error);
+    }
 
-    //bring in delete api from express
   };
 
   async componentDidMount() {

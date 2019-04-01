@@ -10,7 +10,7 @@ export default class ClinicForm extends Component {
     data: {
       name: "",
       address: "",
-      tel_office_1: "",
+      tel_office: "",
       postal_code: "",
       Latitude: "",
       Longitude: "",
@@ -18,16 +18,27 @@ export default class ClinicForm extends Component {
     }
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
+    const { history } = this.props;
+    try {
+      const res = await fetch(`${getUrl}/api/clinics`, {
+        method: "POST",
+        body: JSON.stringify(this.state.data),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include"
+      });
+      // const data = await res.json();
+      if (res.status !== 201) {
+        throw new Error("Not authorised to add clinics");
+      }
+      history.push("/admin");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   handleChange = ({ currentTarget: input }) => {
-    // const errors = { ...this.state.errors };
-    // const errorMessage = this.validateField(input);
-    // if (errorMessage) errors[input.name] = errorMessage;
-    // else delete errors[input.name];
-
     const data = { ...this.state.data };
     data[input.name] = input.value;
 
@@ -40,13 +51,13 @@ export default class ClinicForm extends Component {
         credentials: "include"
       });
       const clinics = await res.json();
-      console.log(clinics);
       const id = this.props.match ? this.props.match.params.id : null;
       const clinicFound = clinics.find(clinic => clinic.id === id);
-      console.log(clinicFound); //why is it not matching?
       if (!clinicFound) return;
       this.setState({ data: clinicFound });
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   render() {
@@ -54,7 +65,7 @@ export default class ClinicForm extends Component {
       id,
       name,
       address,
-      tel_office_1,
+      tel_office,
       postal_code,
       Latitude,
       Longitude
@@ -82,13 +93,13 @@ export default class ClinicForm extends Component {
           <div className="form-group col-md-6">
             <label htmlFor="lastName">Office Tele</label>
             <input
-              name="tel_office_1"
+              name="tel_office"
               type="number"
               className="form-control"
-              id="tel_office_1"
+              id="tel_office"
               placeholder="61234567"
               onChange={this.handleChange}
-              value={tel_office_1}
+              value={tel_office}
               // error={error.lastName}
             />
           </div>
@@ -127,6 +138,7 @@ export default class ClinicForm extends Component {
             <input
               name="Latitude"
               type="number"
+              step="0.00001"
               className="form-control"
               id="Latitude"
               placeholder="1.2345"
@@ -140,6 +152,7 @@ export default class ClinicForm extends Component {
             <input
               name="Longitude"
               type="number"
+              step="0.00001"
               className="form-control"
               id="Longitude"
               placeholder="103.123"
