@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Input from "../Input/Input";
 
 const isDev = process.env.NODE_ENV !== "production";
 const getUrl = isDev
@@ -14,7 +13,8 @@ export default class ClinicForm extends Component {
       tel_office_1: "",
       postal_code: "",
       Latitude: "",
-      Longitude: ""
+      Longitude: "",
+      id: ""
     }
   };
 
@@ -34,8 +34,24 @@ export default class ClinicForm extends Component {
     this.setState({ data });
   };
 
+  async componentDidMount() {
+    try {
+      const res = await fetch(`${getUrl}/api/clinics`, {
+        credentials: "include"
+      });
+      const clinics = await res.json();
+      console.log(clinics);
+      const id = this.props.match ? this.props.match.params.id : null;
+      const clinicFound = clinics.find(clinic => clinic.id === id);
+      console.log(clinicFound); //why is it not matching?
+      if (!clinicFound) return;
+      this.setState({ data: clinicFound });
+    } catch (error) {}
+  }
+
   render() {
     const {
+      id,
       name,
       address,
       tel_office_1,
@@ -46,7 +62,7 @@ export default class ClinicForm extends Component {
     return (
       <div className="container my-3">
         <div className="form-group mx-auto">
-          <h3>{name ? "Edit Clinic" : "New Clinic"}</h3>
+          <h3>{id ? "Edit Clinic" : "New Clinic"}</h3>
         </div>
         <form onSubmit={this.handleSubmit}>
           {/* <div className="form-row"> */}
