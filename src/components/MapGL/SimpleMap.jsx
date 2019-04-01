@@ -45,12 +45,12 @@ export default class App extends Component {
 
   _renderCityMarker = (clinic, index) => {
     return (
-      clinic.coordinates.Longitude &&
-      clinic.coordinates.Latitude && (
+      clinic.coordinate.Longitude &&
+      clinic.coordinate.Latitude && (
         <Marker
           key={`marker-${index}`}
-          longitude={clinic.coordinates.Longitude}
-          latitude={clinic.coordinates.Latitude}
+          longitude={clinic.coordinate.Longitude}
+          latitude={clinic.coordinate.Latitude}
         >
           <ClinicPin
             size={10}
@@ -77,8 +77,8 @@ export default class App extends Component {
         <Popup
           tipSize={5}
           anchor="top"
-          longitude={popupInfo.coordinates.Longitude}
-          latitude={popupInfo.coordinates.Latitude}
+          longitude={popupInfo.coordinate.Longitude}
+          latitude={popupInfo.coordinate.Latitude}
           closeOnClick={false}
           onClose={() => this.setState({ popupInfo: null })}
         >
