@@ -5,7 +5,7 @@ import AdminClinicTable from "../../components/AdminClinicTable/AdminClinicTable
 const isDev = process.env.NODE_ENV !== "production";
 const getUrl = isDev
   ? "http://localhost:5555"
-  : "https://backend-for-vet-app.herokuapp.com/";
+  : "https://backend-for-vet-app.herokuapp.com";
 
 class ClinicsAdmin extends Component {
   state = {

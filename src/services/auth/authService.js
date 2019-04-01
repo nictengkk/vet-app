@@ -5,7 +5,7 @@ const isDev = process.env.NODE_ENV !== "production";
 const getUrl = isDev => {
   return isDev
     ? "http://localhost:5555"
-    : "https://backend-for-vet-app.herokuapp.com/";
+    : "https://backend-for-vet-app.herokuapp.com";
 };
 const baseURL = getUrl(isDev);
 

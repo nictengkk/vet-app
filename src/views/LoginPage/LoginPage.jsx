@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const isDev = process.env.NODE_ENV !== "production";
 const getUrl = isDev
   ? "http://localhost:5555"
-  : "https://backend-for-vet-app.herokuapp.com/";
+  : "https://backend-for-vet-app.herokuapp.com";
 
 export default class LoginPage extends Component {
   state = {

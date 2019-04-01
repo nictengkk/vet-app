@@ -3,7 +3,7 @@ import React, { Component } from "react";
 const isDev = process.env.NODE_ENV !== "production";
 const getUrl = isDev
   ? "http://localhost:5555"
-  : "https://backend-for-vet-app.herokuapp.com/";
+  : "https://backend-for-vet-app.herokuapp.com";
 
 export default class ClinicForm extends Component {
   state = {
