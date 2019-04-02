@@ -34,6 +34,7 @@ export default class ClinicForm extends Component {
       }
       history.push("/admin");
     } catch (error) {
+      alert("access denied");
       console.error(error);
     }
   };
