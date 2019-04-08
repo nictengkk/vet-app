@@ -32,6 +32,26 @@ class ClinicsAdmin extends Component {
 
   };
 
+  handleEdit = async (id) => {
+    try {
+      const { clinics } = this.state;
+      const res = await fetch(`${getUrl}/api/clinics/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include"
+      });
+      if (res.status !== 202) {
+        throw new Error("Not authorised to delete clinics");
+      }
+
+      const updatedClinics = clinics.filter(clinic => clinic.id !== id);
+      this.setState({ clinics: updatedClinics });
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
+
   async componentDidMount() {
     try {
       const res = await fetch(`${getUrl}/api/clinics`, {
@@ -57,6 +77,7 @@ class ClinicsAdmin extends Component {
           <AdminClinicTable
             clinicList={clinics}
             handleDelete={this.handleDelete}
+            handleEdit={this.handleEdit}
           />
         </div>
       </div>
