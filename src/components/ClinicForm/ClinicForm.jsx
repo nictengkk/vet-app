@@ -20,22 +20,42 @@ export default class ClinicForm extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    const { history } = this.props;
-    try {
-      const res = await fetch(`${getUrl}/api/clinics`, {
-        method: "POST",
-        body: JSON.stringify(this.state.data),
-        headers: { "Content-Type": "application/json" },
-        credentials: "include"
-      });
-      // const data = await res.json();
-      if (res.status !== 201) {
-        throw new Error("Not authorised to add clinics");
+    const { history, match } = this.props;
+    const id = match.params.id;
+    if (id) {
+      try {
+        const res = await fetch(`${getUrl}/api/clinics/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(this.state.data),
+          headers: { "Content-Type": "application/json" },
+          credentials: "include"
+        });
+        // const data = await res.json();
+        if (res.status !== 202) {
+          throw new Error("Not authorised to add clinics");
+        }
+        history.push("/admin");
+      } catch (error) {
+        alert("pls complete required fills");
+        console.error(error);
       }
-      history.push("/admin");
-    } catch (error) {
-      alert("access denied");
-      console.error(error);
+    } else {
+      try {
+        const res = await fetch(`${getUrl}/api/clinics`, {
+          method: "POST",
+          body: JSON.stringify(this.state.data),
+          headers: { "Content-Type": "application/json" },
+          credentials: "include"
+        });
+        // const data = await res.json();
+        if (res.status !== 201) {
+          throw new Error("Not authorised to add clinics");
+        }
+        history.push("/admin");
+      } catch (error) {
+        alert("access denied");
+        console.error(error);
+      }
     }
   };
 
@@ -52,10 +72,14 @@ export default class ClinicForm extends Component {
         credentials: "include"
       });
       const clinics = await res.json();
-      const id = this.props.match ? this.props.match.params.id : null;
-      const clinicFound = clinics.find(clinic => clinic.id === id);
+      const paramId = this.props.match ? this.props.match.params.id : null;
+      const clinicFound = clinics.filter(
+        clinic => clinic.id === Number(paramId)
+      );
       if (!clinicFound) return;
-      this.setState({ data: clinicFound });
+      const clinicEdit = clinicFound.pop();
+      console.log(clinicEdit);
+      this.setState({ data: clinicEdit });
     } catch (error) {
       console.error(error);
     }
@@ -70,7 +94,8 @@ export default class ClinicForm extends Component {
       postal_code,
       Latitude,
       Longitude
-    } = this.state;
+    } = this.state.data;
+
     return (
       <div className="container my-3">
         <div className="form-group mx-auto">
