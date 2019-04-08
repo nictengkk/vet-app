@@ -20,7 +20,7 @@ function AdminClinictable({ clinicList, handleDelete }) {
             <th>Address</th>
             <th>Postal Code</th>
             <th>Contact Number</th>
-            {/* <th /> */}
+            <th />
             <th />
           </tr>
         </thead>
@@ -32,12 +32,18 @@ function AdminClinictable({ clinicList, handleDelete }) {
               <td>{clinic.postal_code}</td>
               <td>{clinic.tel_office}</td>
               <td>
-                {/* <Link
+                <Link
                   className="btn btn-primary btn-sm"
                   to={`/clinics/edit/${clinic.id}/`}
                 >
                   Edit
-                </Link> */}
+                </Link>
+                {/* <button
+                  className="btn btn-success btn-sm"
+                  onClick={() => handleEdit(clinic.id)}
+                >
+                  Edit
+                </button> */}
               </td>
               <td>
                 <button
