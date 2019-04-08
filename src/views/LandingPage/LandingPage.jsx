@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getCoordinate, getCoordinates } from "../../utils/getCoordinates";
+import { getCoordinate } from "../../utils/getCoordinates";
 import { getDistance, combineData } from "../../utils/distanceMatrix";
 import "./LandingPage.css";
 
