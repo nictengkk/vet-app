@@ -29,13 +29,13 @@ class ClinicListPage extends Component {
     const { combinedClinicList } = this.props;
     const clinicList = combinedClinicList;
 
-    // const filteredClinics = clinicList.filter(
-    //   c =>
-    //     c.name.includes(filterBy.toLowerCase()) ||
-    //     c.address.Label.includes(filterBy.toLowerCase())
-    // );
+    const filteredClinics = clinicList.filter(
+      c =>
+        c.name.includes(filterBy.toLowerCase()) ||
+        c.address.includes(filterBy.toLowerCase())
+    );
 
-    return clinicList.sort((first, second) => {
+    return filteredClinics.sort((first, second) => {
       if (first[selectedSortBy] < second[selectedSortBy]) return -1;
       if (first[selectedSortBy] > second[selectedSortBy]) return 1;
       return 0;
@@ -48,6 +48,7 @@ class ClinicListPage extends Component {
     const { combinedClinicList: clinicList } = this.props;
 
     const sortedClinicList = this.sortedClinics();
+
 
     return (
       <div className="container">
