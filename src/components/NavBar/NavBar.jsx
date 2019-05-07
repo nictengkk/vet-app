@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4 justify-content-between">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-2 justify-content-between">
       <div>
         <Link className="navbar-brand" to="/">
           <i className="fas fa-paw"> Find Your Nearest Vet </i>
@@ -20,19 +20,17 @@ function NavBar() {
           <span className="navbar-toggler-icon" />
         </button>
       </div>
-      {/* <div className="collapse navbar-collapse" id="navbarNavAltMarkup"> */}
       <div className="navbar-nav">
-        <NavLink className="nav-item nav-link" to="/admin">
+        <Link className="nav-item nav-link" to="/admin">
           <i className="fas fa-clinic-medical"> Admin </i>
-        </NavLink>
-        <NavLink className="nav-item nav-link" to="/login">
+        </Link>
+        <Link className="nav-item nav-link" to="/login">
           <i className="fas fa-sign-in-alt"> Login </i>
-        </NavLink>
-        <NavLink className="nav-item nav-link" to="/signup">
+        </Link>
+        <Link className="nav-item nav-link" to="/signup">
           <i className="fas fa-user-plus"> Signup </i>
-        </NavLink>
+        </Link>
       </div>
-      {/* </div> */}
     </nav>
   );
 }
