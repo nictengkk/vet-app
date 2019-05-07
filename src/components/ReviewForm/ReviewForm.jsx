@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import { Icon } from "antd";
 
-const isDev = process.env.NODE_ENV !== "production";
-const getUrl = isDev
-  ? "http://localhost:5555"
-  : "https://backend-for-vet-app.herokuapp.com";
-
 class Review extends Component {
   render() {
     const { reviewList } = this.props;
