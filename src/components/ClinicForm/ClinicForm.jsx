@@ -102,9 +102,8 @@ export default class ClinicForm extends Component {
           <h3>{id ? "Edit Clinic" : "New Clinic"}</h3>
         </div>
         <form onSubmit={this.handleSubmit}>
-          {/* <div className="form-row"> */}
           <div className="form-group col-md-6 justify-content-center">
-            <label htmlFor="firstName">Clinic Name</label>
+            <label htmlFor="name">Clinic Name</label>
             <input
               name="name"
               type="text"
@@ -113,11 +112,10 @@ export default class ClinicForm extends Component {
               placeholder="Clinic Name"
               onChange={this.handleChange}
               value={name}
-              // error={error.firstName}
             />
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="lastName">Office Tele</label>
+            <label htmlFor="tel_office">Office Tele</label>
             <input
               name="tel_office"
               type="number"
@@ -126,13 +124,10 @@ export default class ClinicForm extends Component {
               placeholder="61234567"
               onChange={this.handleChange}
               value={tel_office}
-              // error={error.lastName}
             />
           </div>
-          {/* </div> */}
-          {/* <div className="form-row"> */}
           <div className="form-group col-md-6">
-            <label htmlFor="username">Address</label>
+            <label htmlFor="address">Address</label>
             <input
               name="address"
               type="text"
@@ -141,11 +136,10 @@ export default class ClinicForm extends Component {
               placeholder="Blk 123 Club Street"
               onChange={this.handleChange}
               value={address}
-              // error={error.username}
             />
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="email">Post Code</label>
+            <label htmlFor="postal_code">Post Code</label>
             <input
               name="postal_code"
               type="number"
@@ -154,13 +148,11 @@ export default class ClinicForm extends Component {
               placeholder="546123"
               onChange={this.handleChange}
               value={postal_code}
-              // error={error.email}
             />
           </div>
-          {/* </div> */}
-          {/* <div className="form-row"> */}
+
           <div className="form-group col-md-6">
-            <label htmlFor="password">Clinic Latitude</label>
+            <label htmlFor="Latitude">Clinic Latitude</label>
             <input
               name="Latitude"
               type="number"
@@ -170,11 +162,10 @@ export default class ClinicForm extends Component {
               placeholder="1.2345"
               onChange={this.handleChange}
               value={Latitude}
-              // error={error.password}
             />
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="imageUrl">Clinic Longitude</label>
+            <label htmlFor="Longitude">Clinic Longitude</label>
             <input
               name="Longitude"
               type="number"
@@ -184,20 +175,14 @@ export default class ClinicForm extends Component {
               placeholder="103.123"
               onChange={this.handleChange}
               value={Longitude}
-              // error={error.imageUrl}
             />
           </div>
           <div className="form-group col-sm-12">
             <div className="form-group">
-              <button
-                type="submit"
-                className="btn btn-primary"
-                // disabled={this.validate() ? true : false}
-              >
+              <button type="submit" className="btn btn-primary">
                 Submit
               </button>
             </div>
-            {/* </div> */}
           </div>
         </form>
       </div>

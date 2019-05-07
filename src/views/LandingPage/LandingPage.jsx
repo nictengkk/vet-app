@@ -65,7 +65,7 @@ class LandingPage extends Component {
             />
             <button
               type="submit"
-              className="btn btn-lg btn-outline-success mt-2"
+              className="btn btn-lg btn-outline-secondary mt-2"
             >
               Find Your Nearest Vet
             </button>
