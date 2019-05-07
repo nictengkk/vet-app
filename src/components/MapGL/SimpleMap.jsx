@@ -5,9 +5,6 @@ import ClinicPin from "./ClinicPin";
 import UserPin from "./UserPin";
 import ClinicInfo from "./Clinicinfo";
 
-const TOKEN =
-  "pk.eyJ1IjoibmljdGVuZ2trIiwiYSI6ImNqc3ZzbGd2bjBhZGkzeXFqcTBweXp6bTAifQ.kgYrCJV7DQ_wyYcZ4PA4FA";
-
 const navStyle = {
   position: "absolute",
   top: 0,
@@ -44,6 +41,7 @@ export default class App extends Component {
   };
 
   _renderCityMarker = (clinic, index) => {
+    console.log(clinic);
     return (
       clinic.coordinate.Longitude &&
       clinic.coordinate.Latitude && (
@@ -98,7 +96,7 @@ export default class App extends Component {
         height={650}
         // mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={this._updateViewport}
-        mapboxApiAccessToken={TOKEN}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
       >
         {this._renderPosition(userAddress.longitude, userAddress.latitude)}
         {clinics.length >= 1 ? clinics.map(this._renderCityMarker) : null}
