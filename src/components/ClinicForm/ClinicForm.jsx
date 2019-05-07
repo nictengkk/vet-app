@@ -68,18 +68,24 @@ export default class ClinicForm extends Component {
 
   async componentDidMount() {
     try {
-      const res = await fetch(`${getUrl}/api/clinics`, {
-        credentials: "include"
-      });
-      const clinics = await res.json();
-      const paramId = this.props.match ? this.props.match.params.id : null;
-      const clinicFound = clinics.filter(
-        clinic => clinic.id === Number(paramId)
-      );
-      if (!clinicFound) return;
-      const clinicEdit = clinicFound.pop();
-      console.log(clinicEdit);
-      this.setState({ data: clinicEdit });
+      const paramsId = this.props.match.params.id
+        ? this.props.match.params.id
+        : null;
+
+      if (paramsId) {
+        const res = await fetch(`${getUrl}/api/clinics`, {
+          credentials: "include"
+        });
+        const clinics = await res.json();
+        const clinicFound = clinics.filter(
+          clinic => clinic.id === Number(paramsId)
+        );
+        if (!clinicFound) {
+          throw new Error("Error: Clinic Not Found");
+        } 
+        const clinicEdit = clinicFound.pop();
+        this.setState({ data: clinicEdit });
+      }
     } catch (error) {
       console.error(error);
     }
