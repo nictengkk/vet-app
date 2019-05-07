@@ -19,12 +19,8 @@ class ClinicDrawer extends Component {
   };
 
   render() {
-    //database of clinics stored locally
-    // const clinics = Clinics["result"]["records"];
-    //database of combined clinic list with long and latitudes
-    const { data } = this.props;
+    const { data, handleClick } = this.props;
     const clinicList = data;
-    // console.log(data);
     return (
       <div>
         <Button type="primary" onClick={this.showDrawer}>
@@ -37,9 +33,15 @@ class ClinicDrawer extends Component {
           onClose={this.onClose}
           visible={this.state.visible}
         >
-          {clinicList.map(clinic => (
-            <div className="card-col">
-              <Clinic key={clinic.id} name={clinic.name} type={clinic.type} />
+          {clinicList.map((clinic, index) => (
+            <div key={index} className="card-col my-2">
+              <Clinic
+                handleClick={handleClick}
+                key={clinic.id}
+                name={clinic.name}
+                type={clinic.type}
+                id={clinic.id}
+              />
             </div>
           ))}
         </Drawer>
