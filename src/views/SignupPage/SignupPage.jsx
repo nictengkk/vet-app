@@ -35,7 +35,6 @@ class SignupPage extends Component {
         headers: { "Content-Type": "application/json" },
         credentials: "include"
       });
-      const data = await res.json();
       if (!res.ok) {
         throw new Error("Something went wrong with signup, please try again");
       }
@@ -52,7 +51,6 @@ class SignupPage extends Component {
   };
 
   render() {
-    // const { error } = this.state;
     const {
       firstName,
       lastName,
@@ -77,7 +75,6 @@ class SignupPage extends Component {
                 placeholder="First Name"
                 onChange={this.handleChange}
                 value={firstName}
-                // error={error.firstName}
               />
             </div>
             <div className="form-group col-md-6">
@@ -90,7 +87,6 @@ class SignupPage extends Component {
                 placeholder="Last Name"
                 onChange={this.handleChange}
                 value={lastName}
-                // error={error.lastName}
               />
             </div>
           </div>
@@ -105,7 +101,6 @@ class SignupPage extends Component {
                 placeholder="Username"
                 onChange={this.handleChange}
                 value={username}
-                // error={error.username}
               />
             </div>
             <div className="form-group col-md-6">
@@ -118,7 +113,6 @@ class SignupPage extends Component {
                 placeholder="Email"
                 onChange={this.handleChange}
                 value={email}
-                // error={error.email}
               />
             </div>
           </div>
@@ -133,7 +127,6 @@ class SignupPage extends Component {
                 placeholder="Password"
                 onChange={this.handleChange}
                 value={password}
-                // error={error.password}
               />
             </div>
             <div className="form-group col-md-6">
@@ -146,7 +139,6 @@ class SignupPage extends Component {
                 placeholder="Image URL"
                 onChange={this.handleChange}
                 value={imageUrl}
-                // error={error.imageUrl}
               />
             </div>
           </div>
@@ -163,11 +155,7 @@ class SignupPage extends Component {
               </label>
             </div>
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            // disabled={this.validate() ? true : false}
-          >
+          <button type="submit" className="btn btn-primary">
             Sign Up
           </button>
         </form>
