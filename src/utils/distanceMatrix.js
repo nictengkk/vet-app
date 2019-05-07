@@ -1,5 +1,4 @@
 export const getDistance = async (userAddress, list) => {
-  // console.log(list);
   const distances = await Promise.all(
     list.map(async clinic => {
       try {
@@ -18,7 +17,6 @@ export const getDistance = async (userAddress, list) => {
     })
   );
   return distances;
-  //prepare data here and return combined data
 };
 
 export const combineData = (clinicList, resultList) => {
@@ -32,6 +30,4 @@ export const combineData = (clinicList, resultList) => {
     return clinic;
   });
   return combinedList;
-  // const filteredList = newList.filter(clinic => !!clinic.results);
-  // return filteredList;
 };
